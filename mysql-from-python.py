@@ -1,4 +1,5 @@
 import os
+import datetime
 import pymysql
 
 #Get username from cloud9 workspace
@@ -14,10 +15,8 @@ connection = pymysql.connect(host='localhost',
 try:
     #Run a query
     with connection.cursor() as cursor:
-        sql = "SELECT * from Artist;"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        print(result)
+        rows = cursor.execute("DELETE FROM Friends WHERE name = 'bob';")
+        connection.commit()
 finally:
     #Close the connection, regardless whether the query('ies') above worked
     connection.close()
